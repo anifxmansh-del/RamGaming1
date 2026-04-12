@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RamGaming1 Official</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07090f;
+  --card: #0c1018;
+  --card2: #111825;
+  --accent: #00d4ff;
+  --accent2: #005fff;
+  --green: #00ff88;
+  --gold: #ffc400;
+  --red: #ff4040;
+  --purple: #a855f7;
+  --text: #d8eaf8;
+  --muted: #3d5470;
+  --border: rgba(0,212,255,0.12);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:3px}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Exo 2',sans-serif;
+  overflow-x:hidden;
+}
+
+/* grid */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);
+  background-size:50px 50px;
+  pointer-events:none;z-index:0;
+}
+
+body::after{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 70% 45% at 50% 0%,rgba(0,95,255,0.13) 0%,transparent 65%);
+  pointer-events:none;z-index:0;
+}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 36px;height:60px;
+  background:rgba(7,9,15,0.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Orbitron',monospace;font-weight:900;font-size:17px;
+  letter-spacing:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nav-links{display:flex;gap:24px}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:12px;
+  letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--accent)}
+@media(max-width:600px){.nav-links{display:none}}
+
+/* ===== TICKER ===== */
+.ticker-wrap{
+  position:relative;z-index:1;
+  overflow:hidden;
+  background:rgba(0,212,255,0.04);
+  border-bottom:1px solid var(--border);
+  padding:9px 0;white-space:nowrap;
+  margin-top:60px;
+}
+.ticker{
+  display:inline-block;
+  animation:ticker 30s linear infinite;
+  font-size:12px;letter-spacing:1px;color:var(--muted);
+}
+.ticker em{color:var(--accent);font-style:normal;margin:0 6px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;z-index:1;
+  min-height:92vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:60px 20px 50px;
+}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,212,255,0.07);
+  border:1px solid rgba(0,212,255,0.2);
+  border-radius:30px;padding:5px 16px;
+  font-size:11px;letter-spacing:3px;color:var(--accent);
+  text-transform:uppercase;margin-bottom:22px;
+  animation:fadeDown 0.5s ease both;
+}
+.live-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 7px var(--green);
+  animation:blink 2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+
+.hero-title{
+  font-family:'Orbitron',monospace;font-weight:900;
+  font-size:clamp(32px,9vw,78px);
+  line-height:1.04;margin-bottom:8px;
+  animation:fadeDown 0.5s 0.08s ease both;
+}
+.hero-title span{
+  background:linear-gradient(130deg,#00d4ff,#005fff 50%,#00ff88);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:14px;color:var(--muted);letter-spacing:1px;
+  margin-bottom:38px;
+  animation:fadeDown 0.5s 0.16s ease both;
+}
+
+/* socials */
+.social-row{
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  animation:fadeDown 0.5s 0.24s ease both;
+}
+.soc-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:11px 20px;border-radius:10px;
+  text-decoration:none;font-weight:700;font-size:13px;
+  color:#fff;letter-spacing:0.3px;
+  transition:transform 0.18s,filter 0.18s;
+  position:relative;overflow:hidden;
+}
+.soc-btn::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,0);
+  transition:background 0.2s;
+}
+.soc-btn:hover{transform:translateY(-3px);filter:brightness(1.18)}
+.soc-btn svg{width:18px;height:18px;flex-shrink:0;fill:#fff}
+.soc-btn.yt{background:linear-gradient(135deg,#b00000,#ff0000);box-shadow:0 3px 18px rgba(255,0,0,0.3)}
+.soc-btn.dc{background:linear-gradient(135deg,#3b47b8,#5865f2);box-shadow:0 3px 18px rgba(88,101,242,0.3)}
+.soc-btn.wa{background:linear-gradient(135deg,#0a7a2e,#25d366);box-shadow:0 3px 18px rgba(37,211,102,0.3)}
+
+/* ===== SECTION SHELL ===== */
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:70px 20px}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.sec-title{
+  font-family:'Orbitron',monospace;font-size:clamp(20px,4vw,32px);font-weight:700;
+}
+.sec-title span{color:var(--accent)}
+.sec-rule{width:50px;height:2px;background:linear-gradient(90deg,var(--accent),transparent);margin:12px auto 0;border-radius:2px}
+
+/* ===== CATEGORY TABS ===== */
+.cat-tabs{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+  margin-bottom:36px;
+}
+.cat-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:9px 20px;border-radius:30px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--muted);
+  font-family:'Exo 2',sans-serif;
+  font-size:13px;font-weight:600;letter-spacing:0.5px;
+  cursor:pointer;transition:all 0.2s;
+}
+.cat-btn .c-icon{font-size:15px}
+.cat-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,0.06)}
+.cat-btn.on{background:rgba(0,212,255,0.1);border-color:var(--accent);color:var(--accent)}
+
+/* ===== CARD GRID ===== */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+  gap:16px;
+}
+
+/* ===== DOWNLOAD CARD ===== */
+.dl-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px;
+  position:relative;overflow:hidden;
+  transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;
+  display:flex;flex-direction:column;gap:10px;
+}
+.dl-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,0.3);box-shadow:0 8px 28px rgba(0,212,255,0.08)}
+.dl-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent-cat,var(--accent)),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.dl-card:hover::before{opacity:1}
+
+.dl-card[data-cat="plugin"]{--accent-cat:#00d4ff}
+.dl-card[data-cat="js"]{--accent-cat:#ffc400}
+.dl-card[data-cat="mv"]{--accent-cat:#005fff}
+.dl-card[data-cat="world"]{--accent-cat:#00ff88}
+
+.card-top{display:flex;align-items:flex-start;gap:12px}
+.card-emoji{font-size:30px;line-height:1;flex-shrink:0}
+.card-info{flex:1;min-width:0}
+.card-name{
+  font-family:'Orbitron',monospace;font-size:13px;font-weight:700;
+  margin-bottom:4px;color:var(--text);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.card-desc{font-size:12px;color:var(--muted);line-height:1.55}
+
+.card-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px}
+.tag{
+  font-size:10px;font-weight:700;letter-spacing:1px;
+  padding:2px 9px;border-radius:20px;
+}
+.tag-free{background:rgba(0,255,136,0.1);color:var(--green);border:1px solid rgba(0,255,136,0.2)}
+.tag-soon{background:rgba(255,196,0,0.1);color:var(--gold);border:1px solid rgba(255,196,0,0.2)}
+.tag-api{background:rgba(0,95,255,0.1);color:#5ca8ff;border:1px solid rgba(0,95,255,0.2)}
+
+.dl-btn{
+  margin-left:auto;
+  padding:6px 14px;border:none;border-radius:7px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  color:#fff;font-size:11px;font-weight:700;letter-spacing:0.8px;
+  text-decoration:none;cursor:pointer;
+  white-space:nowrap;transition:opacity 0.2s;
+  flex-shrink:0;
+}
+.dl-btn:hover{opacity:0.82}
+.dl-btn.soon{background:rgba(255,255,255,0.06);color:var(--muted);pointer-events:none}
+
+/* coming soon overlay */
+.cs-wrap{position:relative;overflow:hidden}
+.cs-badge{
+  position:absolute;top:14px;right:14px;
+  font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;
+  padding:4px 11px;border-radius:20px;
+  background:rgba(255,196,0,0.1);color:var(--gold);border:1px solid rgba(255,196,0,0.25);
+}
+
+/* hidden */
+.dl-card.hidden{display:none}
+
+/* ===== DIVIDER ===== */
+.div-line{
+  position:relative;z-index:1;
+  height:1px;max-width:1080px;margin:0 auto;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+}
+
+/* ===== COOKIE POPUP ===== */
+.cookie-bg{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(6px);
+  z-index:9999;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding:20px;
+  transition:opacity 0.35s;
+}
+.cookie-bg.hide{opacity:0;pointer-events:none}
+.cookie-box{
+  width:100%;max-width:560px;
+  background:#0c1018;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:26px 24px;
+  position:relative;
+  box-shadow:0 -4px 40px rgba(0,212,255,0.1);
+  animation:slideUp 0.4s cubic-bezier(0.34,1.4,0.64,1) both;
+}
+@keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
+.cookie-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  border-radius:20px 20px 0 0;
+}
+.cookie-icon{font-size:28px;margin-bottom:10px}
+.cookie-title{
+  font-family:'Orbitron',monospace;font-size:15px;font-weight:700;
+  color:var(--text);margin-bottom:8px;
+}
+.cookie-text{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:18px}
+.cookie-btns{display:flex;gap:10px;flex-wrap:wrap}
+.ck-btn{
+  padding:10px 22px;border:none;border-radius:9px;
+  font-family:'Exo 2',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:transform 0.15s,opacity 0.15s;letter-spacing:0.5px;
+}
+.ck-btn:active{transform:scale(0.96)}
+.ck-btn.accept{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;box-shadow:0 3px 16px rgba(0,212,255,0.25)}
+.ck-btn.decline{background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid rgba(255,255,255,0.08)}
+.ck-btn:hover{opacity:0.85}
+
+/* ===== FOOTER ===== */
+footer{
+  position:relative;z-index:1;
+  text-align:center;
+  padding:36px 20px;
+  border-top:1px solid var(--border);
+  font-size:12px;color:var(--muted);
+}
+footer strong{color:var(--accent);font-family:'Orbitron',monospace}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.55s,transform 0.55s}
+.reveal.on{opacity:1;transform:none}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- COOKIE POPUP -->
+<div class="cookie-bg" id="cookieBg">
+  <div class="cookie-box">
+    <div class="cookie-icon">&#127850;</div>
+    <div class="cookie-title">We use cookies</div>
+    <div class="cookie-text">
+      This site uses cookies to improve your experience and remember your preferences.
+      By clicking <strong style="color:var(--text)">Accept</strong> you agree to our use of cookies.
+      Your data is never sold or shared.
+    </div>
+    <div class="cookie-btns">
+      <button class="ck-btn accept" onclick="acceptCookie()">Accept All</button>
+      <button class="ck-btn decline" onclick="declineCookie()">Decline</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RamGaming1</div>
+  <div class="nav-links">
+    <a href="#downloads">Downloads</a>
+    <a href="#socials">Socials</a>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    &nbsp;&nbsp;&nbsp;
+    <em>NEW</em> HardCore v2.0.0 &nbsp;&#9679;&nbsp;
+    <em>NEW</em> HubSystem Plugin &nbsp;&#9679;&nbsp;
+    <em>HOT</em> MultiversionAPI MCPE 0.14.x-0.15.10 &nbsp;&#9679;&nbsp;
+    Last Day: Infection Protocol v1.5 &nbsp;&#9679;&nbsp;
+    <em>NEW</em> ElytraX Plugin &nbsp;&#9679;&nbsp;
+    <em>HOT</em> ShopGUI with EconomyAPI &nbsp;&#9679;&nbsp;
+    <em>NEW</em> HardCore v2.0.0 &nbsp;&#9679;&nbsp;
+    <em>NEW</em> HubSystem Plugin &nbsp;&#9679;&nbsp;
+    <em>HOT</em> MultiversionAPI MCPE 0.14.x-0.15.10 &nbsp;&#9679;&nbsp;
+    Last Day: Infection Protocol v1.5 &nbsp;&#9679;&nbsp;
+    <em>NEW</em> ElytraX Plugin &nbsp;&#9679;&nbsp;
+    <em>HOT</em> ShopGUI with EconomyAPI &nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <div class="live-dot"></div>
+    MCPE Plugin Developer &amp; Content Creator
+  </div>
+  <h1 class="hero-title"><span>RamGaming1</span><br>Official</h1>
+  <p class="hero-sub">PocketMine Plugins &nbsp;&#9679;&nbsp; ModPE Scripts &nbsp;&#9679;&nbsp; MCPE 0.15.10</p>
+
+  <div class="social-row" id="socials">
+    <!-- REPLACE href WITH YOUR REAL LINKS -->
+    <a class="soc-btn yt" href="https://www.youtube.com/@RamGaming91k" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      YouTube
+    </a>
+    <a class="soc-btn dc" href="YOUR_DISCORD_LINK" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.5.9-.7 1.3a18.3 18.3 0 0 0-5.5 0C9 3.9 8.7 3.4 8.5 3A19.7 19.7 0 0 0 3.6 4.4C.5 9.1-.3 13.7.1 18.2a19.9 19.9 0 0 0 6.1 3.1c.5-.7.9-1.4 1.3-2.1-.7-.3-1.4-.6-2-1l.5-.4c3.9 1.8 8.1 1.8 12 0l.5.4c-.7.4-1.3.7-2 1 .4.7.8 1.4 1.3 2.1a19.8 19.8 0 0 0 6.1-3.1c.5-5.2-.9-9.7-3.7-13.8zM8 15.4c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.6 8 10.6s2.2 1.1 2.2 2.4S9.2 15.4 8 15.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
+      Discord
+    </a>
+    <a class="soc-btn wa" href="YOUR_WHATSAPP_LINK" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.7-3-.3-.4.3-.4.8-1.4.1-.2 0-.4 0-.5L9.6 7c-.2-.5-.4-.4-.5-.4h-.6c-.2 0-.5.1-.7.3C7.5 7.3 6.6 8.2 6.6 10c0 1.8 1.3 3.6 1.5 3.8.2.3 2.6 3.9 6.2 5.5 3.7 1.5 3.7 1 4.3 1 .7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.4 5.3L2 22l4.8-1.3C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</section>
+
+<div class="div-line"></div>
+
+<!-- ===== DOWNLOADS ===== -->
+<section class="wrap" id="downloads">
+  <div class="sec-head reveal">
+    <div class="sec-tag">&#9632; All Resources</div>
+    <h2 class="sec-title">Downloads <span>&amp; Resources</span></h2>
+    <div class="sec-rule"></div>
+  </div>
+
+  <!-- CATEGORY TABS -->
+  <div class="cat-tabs reveal">
+    <button class="cat-btn on" onclick="filterCat('all',this)">
+      <span class="c-icon">&#128230;</span> All
+    </button>
+    <button class="cat-btn" onclick="filterCat('plugin',this)">
+      <span class="c-icon">&#129520;</span> Plugins
+    </button>
+    <button class="cat-btn" onclick="filterCat('js',this)">
+      <span class="c-icon">&#128220;</span> JavaScript
+    </button>
+    <button class="cat-btn" onclick="filterCat('mv',this)">
+      <span class="c-icon">&#128279;</span> MultiversionAPI
+    </button>
+    <button class="cat-btn" onclick="filterCat('world',this)">
+      <span class="c-icon">&#127757;</span> Worlds &amp; Maps
+    </button>
+  </div>
+
+  <!-- CARD GRID -->
+  <div class="card-grid" id="cardGrid">
+
+    <!-- ======== PLUGINS ======== -->
+    <div class="dl-card reveal" data-cat="plugin">
+      <div class="card-top">
+        <div class="card-emoji">&#127968;</div>
+        <div class="card-info">
+          <div class="card-name">HubSystem</div>
+          <div class="card-desc">Full hub management. Spawn, scoreboard, join messages, tip display. PHP5 API 2.x.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-free">FREE</span>
+        <span class="tag tag-api">API 2.x</span>
+        <!-- REPLACE href -->
+        <a class="dl-btn" href="YOUR_HUBSYSTEM_LINK" target="_blank">DOWNLOAD</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal" data-cat="plugin">
+      <div class="card-top">
+        <div class="card-emoji">&#128128;</div>
+        <div class="card-info">
+          <div class="card-name">HardCore v2.0.0</div>
+          <div class="card-desc">Hardcore mode. Players banned on death. Custom messages and bypass permission.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-free">FREE</span>
+        <span class="tag tag-api">API 2.x</span>
+        <!-- REPLACE href -->
+        <a class="dl-btn" href="YOUR_HARDCORE_LINK" target="_blank">DOWNLOAD</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal" data-cat="plugin">
+      <div class="card-top">
+        <div class="card-emoji">&#129415;</div>
+        <div class="card-info">
+          <div class="card-name">ElytraX</div>
+          <div class="card-desc">Smooth elytra glide for MCPE 0.15.10. Directional flight, landing detection, 10s auto-descent.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-free">FREE</span>
+        <span class="tag tag-api">API 2.x</span>
+        <!-- REPLACE href -->
+        <a class="dl-btn" href="YOUR_ELYTRAX_LINK" target="_blank">DOWNLOAD</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal" data-cat="plugin">
+      <div class="card-top">
+        <div class="card-emoji">&#128722;</div>
+        <div class="card-info">
+          <div class="card-name">ShopGUI</div>
+          <div class="card-desc">In-game shop with EconomyAPI. Buy &amp; sell items via menu. Fully configurable.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-free">FREE</span>
+        <span class="tag tag-api">EconomyAPI</span>
+        <!-- REPLACE href -->
+        <a class="dl-btn" href="YOUR_SHOPGUI_LINK" target="_blank">DOWNLOAD</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal" data-cat="plugin">
+      <div class="card-top">
+        <div class="card-emoji">&#127894;</div>
+        <div class="card-info">
+          <div class="card-name">Ranks</div>
+          <div class="card-desc">Custom rank system with chat prefix. Assign via command. Full color code support.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-free">FREE</span>
+        <span class="tag tag-api">API 2.x</span>
+        <!-- REPLACE href -->
+        <a class="dl-btn" href="YOUR_RANKS_LINK" target="_blank">DOWNLOAD</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal" data-cat="plugin">
+      <div class="card-top">
+        <div class="card-emoji">&#9889;</div>
+        <div class="card-info">
+          <div class="card-name">AntiVoid</div>
+          <div class="card-desc">Teleports players to safety when falling into the void. Configurable Y level.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-free">FREE</span>
+        <span class="tag tag-api">API 2.x</span>
+        <!-- REPLACE href -->
+        <a class="dl-btn" href="YOUR_ANTIVOID_LINK" target="_blank">DOWNLOAD</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="plugin">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#127759;</div>
+        <div class="card-info">
+          <div class="card-name">RTP</div>
+          <div class="card-desc">Random teleport to a safe world location on command.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="plugin">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#129302;</div>
+        <div class="card-info">
+          <div class="card-name">BotPvP</div>
+          <div class="card-desc">Practice PvP against AI bots with adjustable difficulty.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="plugin">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#128128;</div>
+        <div class="card-info">
+          <div class="card-name">HeadSteal</div>
+          <div class="card-desc">Drop player heads on death. Collect as trophies.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="plugin">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#128683;</div>
+        <div class="card-info">
+          <div class="card-name">Maintenance</div>
+          <div class="card-desc">Lock server for maintenance with custom MOTD and whitelist.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="plugin">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#9881;&#65039;</div>
+        <div class="card-info">
+          <div class="card-name">AutoReload</div>
+          <div class="card-desc">Auto reload server at configurable intervals.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="plugin">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#128737;&#65039;</div>
+        <div class="card-info">
+          <div class="card-name">AntiPromote</div>
+          <div class="card-desc">Block players from advertising other servers in chat.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <!-- ======== JAVASCRIPT ======== -->
+    <div class="dl-card reveal" data-cat="js">
+      <div class="card-top">
+        <div class="card-emoji">&#129875;</div>
+        <div class="card-info">
+          <div class="card-name">Last Day: Infection Protocol</div>
+          <div class="card-desc">Zombie apocalypse survival mod. 51 zombie types, infection, thirst, sanity, horde, safe zones, radiation &amp; mutation. Toolbox ModPE.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-free">FREE</span>
+        <span class="tag tag-api">Toolbox</span>
+        <!-- REPLACE href -->
+        <a class="dl-btn" href="YOUR_LASTDAY_LINK" target="_blank">DOWNLOAD</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="js">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#127891;</div>
+        <div class="card-info">
+          <div class="card-name">CustomHUD Mod</div>
+          <div class="card-desc">HUD overlay using setTipMessage(). XP bar, day counter, health display.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <span class="tag tag-api">Toolbox</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="js">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#9876;&#65039;</div>
+        <div class="card-info">
+          <div class="card-name">SpeedPvP Mod</div>
+          <div class="card-desc">Speed &amp; PvP enhancer. Custom knockback and hit effects via attackHook().</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <span class="tag tag-api">Toolbox</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="js">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#127760;</div>
+        <div class="card-info">
+          <div class="card-name">WaterMLG Mod</div>
+          <div class="card-desc">Auto water bucket MLG mechanic for Toolbox ModPE engine.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <span class="tag tag-api">Toolbox</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <!-- ======== MULTIVERSION API ======== -->
+    <div class="dl-card reveal" data-cat="mv">
+      <div class="card-top">
+        <div class="card-emoji">&#128279;</div>
+        <div class="card-info">
+          <div class="card-name">MultiversionAPI PHAR</div>
+          <div class="card-desc">Support MCPE 0.14.x to 0.15.10 on one PocketMine server. Custom MOTD, ASCII banner, styled commands (/ver /help /pl /list /status /kick /gamemode /reload /tell /country /pv).</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-free">FREE</span>
+        <span class="tag tag-api">Protocol 49-84</span>
+        <!-- REPLACE href -->
+        <a class="dl-btn" href="YOUR_MULTIVERSIONAPI_LINK" target="_blank">DOWNLOAD</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="mv">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#128296;</div>
+        <div class="card-info">
+          <div class="card-name">MultiversionAPI v2</div>
+          <div class="card-desc">Extended protocol support. More MCPE versions, improved compat, custom hooks.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <!-- ======== WORLDS & MAPS ======== -->
+    <div class="dl-card reveal cs-wrap" data-cat="world">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#127984;</div>
+        <div class="card-info">
+          <div class="card-name">PvP Arena Map</div>
+          <div class="card-desc">Competitive PvP arena world built for MCPE 0.15.10 servers.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <span class="tag tag-api">MCPE 0.15.10</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="world">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#127968;</div>
+        <div class="card-info">
+          <div class="card-name">Hub World</div>
+          <div class="card-desc">Pre-built hub/lobby world. Compatible with HubSystem plugin.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <span class="tag tag-api">MCPE 0.15.10</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+    <div class="dl-card reveal cs-wrap" data-cat="world">
+      <div class="cs-badge">COMING SOON</div>
+      <div class="card-top">
+        <div class="card-emoji">&#127956;</div>
+        <div class="card-info">
+          <div class="card-name">Survival World</div>
+          <div class="card-desc">Custom survival map with rare ores, dungeons and hidden chests.</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="tag tag-soon">SOON</span>
+        <span class="tag tag-api">MCPE 0.15.10</span>
+        <a class="dl-btn soon">SOON</a>
+      </div>
+    </div>
+
+  </div><!-- /card-grid -->
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:'Orbitron',monospace;font-size:15px;margin-bottom:6px">
+    <strong>RamGaming1</strong>
+  </p>
+  <p>MCPE Plugin Dev &nbsp;&#9679;&nbsp; ModPE Creator &nbsp;&#9679;&nbsp; Content Creator</p>
+  <p style="margin-top:10px;font-size:11px;opacity:0.4">&copy; 2024 RamGaming1. Made for MCPE 0.15.10 / PocketMine API 2.x.</p>
+</footer>
+
+<script>
+// Cookie
+function acceptCookie(){
+  document.getElementById('cookieBg').classList.add('hide');
+  localStorage.setItem('rg1_cookie','1');
+}
+function declineCookie(){
+  document.getElementById('cookieBg').classList.add('hide');
+  localStorage.setItem('rg1_cookie','0');
+}
+(function(){
+  if(localStorage.getItem('rg1_cookie')!==null){
+    document.getElementById('cookieBg').classList.add('hide');
+  }
+})();
+
+// Category filter
+function filterCat(cat, btn){
+  document.querySelectorAll('.cat-btn').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+  document.querySelectorAll('.dl-card').forEach(function(c){
+    if(cat==='all' || c.dataset.cat===cat){
+      c.classList.remove('hidden');
+    } else {
+      c.classList.add('hidden');
+    }
+  });
+}
+
+// Scroll reveal
+var revEls = document.querySelectorAll('.reveal');
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('on'); });
+},{threshold:0.08});
+revEls.forEach(function(el){ obs.observe(el); });
+</script>
+</body>
+</html>
